@@ -1,10 +1,10 @@
 data "aws_eks_cluster" "target_eks" {
-  name = module.eks.cluster_name
+  name       = module.eks.cluster_name
   depends_on = [module.eks.cluster_name]
 }
 
 data "aws_eks_cluster_auth" "target_eks_auth" {
-  name = module.eks.cluster_name
+  name       = module.eks.cluster_name
   depends_on = [module.eks.cluster_name]
 }
 
@@ -14,12 +14,6 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.target_eks_auth.token
 }
 
-resource "random_string" "uddin-rabbitmq-password" {
-  length  = 32
-  upper   = true
-  special = false
-}
-
 # Create configMap with the variables necessary for the application
 resource "kubernetes_config_map" "hackaton-configmap" {
   metadata {
@@ -27,15 +21,15 @@ resource "kubernetes_config_map" "hackaton-configmap" {
   }
 
   data = {
-    RUN_ON                    = "production"
-    SERVER_PORT               = "3000"
-    DATABASE_HOST             = "${aws_db_instance.hackaton_db.address}"
-    DATABASE_NAME             = "${aws_db_instance.hackaton_db.db_name}"
-    DATABASE_PORT             = "${aws_db_instance.hackaton_db.port}"
-    DATABASE_USER             = "${aws_db_instance.hackaton_db.username}"
-    DATABASE_PASSWORD         = "${aws_db_instance.hackaton_db.password}"
-    JWT_SECRET                = "TESTE"
-    RESEND_MAIL_KEY           = "re_f1sJqNBZ_CypSyGTsHZzA4BWmt5wPceLJ"
-    EMAIL_SENDER_ADDRESS      = "onboarding@resend.dev"
+    RUN_ON               = "production"
+    SERVER_PORT          = "3000"
+    DATABASE_HOST        = "${aws_db_instance.hackaton_db.address}"
+    DATABASE_NAME        = "${aws_db_instance.hackaton_db.db_name}"
+    DATABASE_PORT        = "${aws_db_instance.hackaton_db.port}"
+    DATABASE_USER        = "${aws_db_instance.hackaton_db.username}"
+    DATABASE_PASSWORD    = "${aws_db_instance.hackaton_db.password}"
+    JWT_SECRET           = "TESTE"
+    RESEND_MAIL_KEY      = "re_f1sJqNBZ_CypSyGTsHZzA4BWmt5wPceLJ"
+    EMAIL_SENDER_ADDRESS = "onboarding@resend.dev"
   }
 }

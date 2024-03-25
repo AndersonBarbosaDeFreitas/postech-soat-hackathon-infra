@@ -4,7 +4,7 @@
 terraform {
 
   cloud {
-    organization = "soat-hackaton"
+    organization = "Postech"
 
     workspaces {
       name = "soat-hackaton-actions"
