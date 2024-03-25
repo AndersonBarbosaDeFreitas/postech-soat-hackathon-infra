@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-hackaton
+  labels:
+    app: api-hackaton
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-hackaton
+  template:
+    metadata:
+      name: api-hackaton
+      labels:
+        app: api-hackaton
+    spec:
+      containers:
+        - name: api-hackaton-container
+          image: andersonbf/postech-soat-hackathon
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: hackaton-configmap
+          resources:
+            requests:
+              cpu: 250m

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hackaton-configmap
+data:
+  RUN_ON                    : "dev"
+  SERVER_PORT               : "3000"
+  DATABASE_HOST             : "postgres-svc"
+  DATABASE_NAME             : "hackaton"
+  DATABASE_PORT             : "5432"
+  DATABASE_USER             : "root"
+  DATABASE_PASSWORD         : "root"
+  JWT_SECRET                : "TESTE"
+  RESEND_MAIL_KEY           : "re_f1sJqNBZ_CypSyGTsHZzA4BWmt5wPceLJ"
+  EMAIL_SENDER_ADDRESS      : "onboarding@resend.dev"
