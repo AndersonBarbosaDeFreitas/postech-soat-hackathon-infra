@@ -14,3 +14,18 @@ variable "public_subnet_cidr_blocks" {
   type        = list(string)
   default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
+
+variable "jwt_secret" {
+  type    = string
+  default = "value"
+}
+
+variable "email_address" {
+  type    = string
+  default = "value"
+}
+
+variable "email_password" {
+  type    = string
+  default = "value"
+}
